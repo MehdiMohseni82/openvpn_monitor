@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+  dotnettalk.openvpn.monitor.service:
+    image: ${DOCKER_REGISTRY-}dotnettalkopenvpnmonitorservice
+    build:
+      context: .
+      dockerfile: DotnetTalk.OpenVpn.Monitor.Service/Dockerfile
+    ports:
+      - 5055:6055
+    networks:
+        - openvpn.monitor.net
+    depends_on:
+        - rabbitmq
+        - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+        - openvpn.monitor.net
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+    networks:
+        - openvpn.monitor.net
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'openvpn.monitor.rabbitmq'
+    ports:
+        - 4422:5672
+        - 4423:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - openvpn.monitor.net
+
+networks:
+  openvpn.monitor.net:
+    driver: bridge

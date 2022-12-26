@@ -1,0 +1,16 @@
+﻿OpenVpnConnection:
+  ServerIp: 
+  ServerPort: 
+
+MongoDbWriter:
+  Host: mongo
+  Port: 27017
+  Database: openVpnMonitor
+  User: root
+  Password: example
+
+RabbitMqConfiguration:
+  Host: rabbitmq
+  Port: 5672
+  Username: guest
+  Password: guest

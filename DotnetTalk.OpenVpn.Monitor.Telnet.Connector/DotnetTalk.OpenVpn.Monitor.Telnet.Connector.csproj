@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.2.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
+    <PackageReference Include="Telnet" Version="0.11.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotnetTalk.OpenVpn.Monitor.Common\DotnetTalk.OpenVpn.Monitor.Common.csproj" />
+  </ItemGroup>
+
+</Project>

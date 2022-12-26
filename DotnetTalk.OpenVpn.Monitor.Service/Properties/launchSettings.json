@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DotnetTalk.OpenVpn.Telnet.Service": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
